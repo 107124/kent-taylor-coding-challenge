@@ -8,7 +8,6 @@ If you open this file in a browser, it is set up to function as a standalone wid
 Please use good design and user experience principles to make it look as professional as possible.
 -->
 
-// FIXME add scripts from file
 
 <template>
   <div class="widget-container">
@@ -22,31 +21,35 @@ Please use good design and user experience principles to make it look as profess
         <!-- search wrapper -->
         <div class="search-wrapper">
           <label for="form-control">Search Customer</label>
+
           <div class="search-input">
-            <font-awesome-icon icon="fa-regular fa-magnifying-glass" />
-            <input
-              id="form-control"
-              class="form-control"
-              type="text"
-              v-model="searchQuery"
-              placeholder="Search"
-            />
+            <i class="fa">&#xf002;</i>
+            <div class="input-container">
+              <input
+                id="form-control"
+                class="form-control"
+                type="text"
+                v-model="searchQuery"
+                placeholder="first, last, phone or email"
+              />
+            </div>
           </div>
         </div>
         <!-- tables set by category and using nth child for legibility -->
 
-        <div class="panel-body" style="max-height: 400px; overflow-y: scroll">
+        <div class="panel-body">
           <table v-if="people.length" class="hidden-container">
+              <p v-show="!searchQuery">Search something</p>
             <tbody>
               <!-- for each person in the people array, display each of their info -->
 
               <tr v-for="item in filterCustomer" :key="item">
                 <h1 v-if="showIt">hey</h1>
-                <td>{{ item.firstName }}</td>
-                <td>{{ item.lastName }}</td>
+                <td>{{ item.firstName.toUpperCase() }}</td>
+                <td>{{ item.lastName.toUpperCase() }}</td>
                 <td>{{ item.phone }}</td>
                 <td>{{ item.email }}</td>
-                <td v-on:click="deleteEvent(item)">
+                <td class="delete-square" v-on:click="deleteEvent(item)">
                   <!-- sending each customers item info through the delete button to delete it's index -->
                   <i class="fas fa-trash-alt"></i>
                 </td>
@@ -62,6 +65,7 @@ Please use good design and user experience principles to make it look as profess
         <thead>
           <tr>
             <th
+              class="table-label"
               @click="
                 (last = false), (first = true), (phone = false), (email = false)
               "
@@ -69,6 +73,7 @@ Please use good design and user experience principles to make it look as profess
               First
             </th>
             <th
+              class="table-label"
               @click="
                 (last = true), (first = false), (phone = false), (email = false)
               "
@@ -76,6 +81,7 @@ Please use good design and user experience principles to make it look as profess
               Last
             </th>
             <th
+              class="table-label"
               @click="
                 (last = false), (first = false), (phone = true), (email = false)
               "
@@ -83,6 +89,7 @@ Please use good design and user experience principles to make it look as profess
               Phone
             </th>
             <th
+              class="table-label"
               @click="
                 (last = false), (first = false), (phone = false), (email = true)
               "
@@ -90,18 +97,18 @@ Please use good design and user experience principles to make it look as profess
               Email
             </th>
 
-            <th>Action</th>
+            <th class="table-label">Action</th>
           </tr>
         </thead>
         <tbody>
           <!-- for each person in the people array, display each of their info -->
           <tr v-for="person in people" :key="person">
-            <td>{{ person.firstName }}</td>
-            <td>{{ person.lastName }}</td>
+            <td>{{ person.firstName.toUpperCase() }}</td>
+            <td>{{ person.lastName.toUpperCase() }}</td>
             <td>{{ person.phone }}</td>
             <td>{{ person.email }}</td>
 
-            <td v-on:click="deleteEvent(person)">
+            <td class="delete-square" v-on:click="deleteEvent(person)">
               <!-- sending each customers item info through the delete button to delete it's index -->
               <i class="fas fa-trash-alt"></i>
             </td>
@@ -115,6 +122,7 @@ Please use good design and user experience principles to make it look as profess
         <thead>
           <tr>
             <th
+              class="table-label"
               @click="
                 (last = true), (first = false), (phone = false), (email = false)
               "
@@ -122,6 +130,7 @@ Please use good design and user experience principles to make it look as profess
               Last
             </th>
             <th
+              class="table-label"
               @click="
                 (last = false), (first = true), (phone = false), (email = false)
               "
@@ -129,6 +138,7 @@ Please use good design and user experience principles to make it look as profess
               First
             </th>
             <th
+              class="table-label"
               @click="
                 (last = false), (first = false), (phone = true), (email = false)
               "
@@ -136,6 +146,7 @@ Please use good design and user experience principles to make it look as profess
               Phone
             </th>
             <th
+              class="table-label"
               @click="
                 (last = false), (first = false), (phone = false), (email = true)
               "
@@ -143,16 +154,16 @@ Please use good design and user experience principles to make it look as profess
               Email
             </th>
 
-            <th>Action</th>
+            <th class="table-label">Action</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="person in people" :key="person">
-            <td>{{ person.lastName }}</td>
-            <td>{{ person.firstName }}</td>
+            <td>{{ person.lastName.toUpperCase() }}</td>
+            <td>{{ person.firstName.toUpperCase() }}</td>
             <td>{{ person.phone }}</td>
             <td>{{ person.email }}</td>
-            <td v-on:click="deleteEvent(person)">
+            <td class="delete-square" v-on:click="deleteEvent(person)">
               <!-- sending each customers item info through the delete button to delete it's index -->
               <i class="fas fa-trash-alt"></i>
             </td>
@@ -164,6 +175,7 @@ Please use good design and user experience principles to make it look as profess
         <thead>
           <tr>
             <th
+              class="table-label"
               @click="
                 (last = false), (first = false), (phone = true), (email = false)
               "
@@ -171,6 +183,7 @@ Please use good design and user experience principles to make it look as profess
               Phone
             </th>
             <th
+              class="table-label"
               @click="
                 (last = false), (first = true), (phone = false), (email = false)
               "
@@ -178,6 +191,7 @@ Please use good design and user experience principles to make it look as profess
               First
             </th>
             <th
+              class="table-label"
               @click="
                 (last = true), (first = false), (phone = false), (email = false)
               "
@@ -186,6 +200,7 @@ Please use good design and user experience principles to make it look as profess
             </th>
 
             <th
+              class="table-label"
               @click="
                 (last = false), (first = false), (phone = false), (email = true)
               "
@@ -193,16 +208,16 @@ Please use good design and user experience principles to make it look as profess
               Email
             </th>
 
-            <th>Action</th>
+            <th class="table-label">Action</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="person in people" :key="person">
             <td>{{ person.phone }}</td>
-            <td>{{ person.firstName }}</td>
-            <td>{{ person.lastName }}</td>
+            <td>{{ person.firstName.toUpperCase() }}</td>
+            <td>{{ person.lastName.toUpperCase() }}</td>
             <td>{{ person.email }}</td>
-            <td v-on:click="deleteEvent(person)">
+            <td class="delete-square" v-on:click="deleteEvent(person)">
               <!-- sending each customers item info through the delete button to delete it's index -->
               <i class="fas fa-trash-alt"></i>
             </td>
@@ -214,6 +229,7 @@ Please use good design and user experience principles to make it look as profess
         <thead>
           <tr>
             <th
+              class="table-label"
               @click="
                 (last = false), (first = false), (phone = false), (email = true)
               "
@@ -221,6 +237,7 @@ Please use good design and user experience principles to make it look as profess
               Email
             </th>
             <th
+              class="table-label"
               @click="
                 (last = false), (first = true), (phone = false), (email = false)
               "
@@ -228,6 +245,7 @@ Please use good design and user experience principles to make it look as profess
               First
             </th>
             <th
+              class="table-label"
               @click="
                 (last = false), (first = false), (phone = true), (email = false)
               "
@@ -235,6 +253,7 @@ Please use good design and user experience principles to make it look as profess
               Phone
             </th>
             <th
+              class="table-label"
               @click="
                 (last = true), (first = false), (phone = false), (email = false)
               "
@@ -242,7 +261,7 @@ Please use good design and user experience principles to make it look as profess
               Last
             </th>
 
-            <th>Action</th>
+            <th class="table-label">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -250,11 +269,11 @@ Please use good design and user experience principles to make it look as profess
 
           <tr v-for="person in people" :key="person">
             <td>{{ person.email }}</td>
-            <td>{{ person.firstName }}</td>
+            <td>{{ person.firstName.toUpperCase() }}</td>
             <td>{{ person.phone }}</td>
-            <td>{{ person.lastName }}</td>
+            <td>{{ person.lastName.toUpperCase() }}</td>
             <!-- delete button -->
-            <td v-on:click="deleteEvent(person)">
+            <td class="delete-square" v-on:click="deleteEvent(person)">
               <!-- sending each customers item info through the delete button to delete it's index -->
               <i class="fas fa-trash-alt"></i>
             </td>
@@ -276,6 +295,7 @@ export default {
       email: false,
       showIt: false,
       searchQuery: "",
+      searchStorage: false,
       inStorage: true,
       deleteName: "",
       categories: ["First", "Last", "Phone", "Email"],
@@ -421,26 +441,46 @@ export default {
       if (this.searchQuery) {
         return this.people.filter((item) => {
           if (item.firstName.startsWith(this.searchQuery)) {
-            return item.firstName.startsWith(this.searchQuery);
+            return (
+              item.firstName.startsWith(this.searchQuery),
+              (this.searchStorage = true)
+            );
           } else if (item.lastName.startsWith(this.searchQuery)) {
-            return item.lastName.startsWith(this.searchQuery);
+            return (
+              item.lastName.startsWith(this.searchQuery),
+              (this.searchStorage = true)
+            );
           } else if (item.phone.startsWith(this.searchQuery)) {
-            return item.phone.startsWith(this.searchQuery);
+            return (
+              item.phone.startsWith(this.searchQuery),
+              (this.searchStorage = true)
+            );
           } else if (item.email.startsWith(this.searchQuery)) {
-            return item.email.startsWith(this.searchQuery);
+            return (
+              item.email.startsWith(this.searchQuery),
+              (this.searchStorage = true)
+            );
+          } else {
+            return (this.searchStorage = false);
           }
         });
       } else {
-        return null;
+        console.log(this.people.searchStorage);
+        return null, (this.searchStorage = false);
       }
     },
   },
   methods: {
     // delete each item that is sent by the delete button
     deleteEvent(item) {
-      console.log(item);
-      alert(`The account: ${item.email} has been deleted`);
-      this.people.splice(this.people.indexOf(item), 1);
+      var result = confirm(
+        `Are you sure you want to delete ${item.firstName}'s account?\n`
+      );
+      if (result) {
+        console.log(item);
+        alert(`The account: ${item.email} has been deleted`);
+        this.people.splice(this.people.indexOf(item), 1);
+      }
     },
   },
 };
@@ -448,11 +488,21 @@ export default {
 
 
 <style scoped>
-/* @import url(https://cdn.syncfusion.com/ej2/material.css); */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500&display=swap");
 :root {
   --blue: #4fc5c4;
   --orange: #f48d46;
   --gray: #545454;
+}
+
+body {
+  background-color: white;
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .logo-container {
@@ -465,15 +515,15 @@ img {
   justify-self: flex-start;
 }
 .widget-container {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: black;
+  color: #535353;
   background-color: white;
   height: 100%;
   width: 100vw;
 }
+
 .search-container {
   display: flex;
   flex-direction: column;
@@ -484,27 +534,87 @@ img {
 }
 
 .form-control {
-  width: 100%;
+  width: 200px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   outline: none;
-  margin-top: 15px;
   border: none;
-  background-color: rgba(255, 166, 0, 0.198);
-  border-bottom: 2px solid orange;
+  background-color: transparent;
   text-align: center;
   text-decoration: none;
 }
 
+.form-control::placeholder {
+  color: rgb(147, 145, 145);
+  font-family: "Nunito", sans-serif;
+}
+
+.fa {
+  /* this is the search button */
+  color: orange;
+  font-size: 1.2em;
+}
+
+.search-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  height: 100%;
+  background-color: rgba(255, 166, 0, 0.198);
+  border-bottom: 2px solid orange;
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 42px;
+  max-height: 350px;
+  overflow-y: auto;
+  width: 60vw;
+  border: 3px solid #535353;
+  border-radius: 5px;
+}
+
+.hidden-container p {
+  padding: 8px 15px;
+  margin: 5px;
+}
+
+.table-label {
+  background-color: #535353;
+  color: white;
+}
+
+.hide {
+  display: none;
+}
+
 .display {
-  overflow-x: scroll;
-  overflow-y: scroll;
-  height: 50%;
+  height: 100%;
+  border: 3px solid #535353;
+  border-radius: 5px;
+  overflow-y: auto;
 }
 
 tr {
   order: 2;
-  /* border: 10px solid black; */
 }
+
+tr:nth-child(even) {
+  background-color: lightgray;
+  padding: 14px 42px;
+  overflow-x: hidden;
+  transition: ease-in-out 0.25s;
+}
+
 th {
   cursor: pointer;
   transition: ease-in-out 0.25s;
@@ -512,25 +622,26 @@ th {
 }
 
 td {
-  /* border: 1px solid black; */
   padding: 15px;
-  overflow-x: scroll;
-  text-transform: capitalize;
+  overflow-x: hidden;
 }
 td:nth-child(odd) {
-  background-color: lightgray;
   padding: 14px 42px;
-  overflow-x: scroll;
+  overflow-x: hidden;
   transition: ease-in-out 0.25s;
+}
+
+.delete-square {
+  cursor: pointer;
 }
 
 .table-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90%;
+  height: 100%;
   overflow-y: scroll;
-  overflow-x: scroll;
+  overflow-x: hidden;
 }
 .table {
   width: 70%;
@@ -565,9 +676,10 @@ h3 {
 }
 
 .panel-body {
-  padding: 0px;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
   height: 100%;
 }
 

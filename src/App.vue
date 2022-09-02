@@ -1,48 +1,36 @@
-<script setup>
-// import HelloWorld from './components/HelloWorld.vue'
-// import TheWelcome from './components/TheWelcome.vue'
-import FrontEndChallenge from "./components/Challenge.vue";
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div id="app">
+    <FrontEndChallenge msg="Welcome to Your Vue.js App" />
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<script>
+import FrontEndChallenge from "./components/FrontendChallenge.vue";
+export default {
+  name: "App",
+  components: {
+    FrontEndChallenge,
+  },
+};
+</script>
+
+<style>
+@import url(https://cdn.syncfusion.com/ej2/material.css);
+html {
+  background-color: #1ec5c3;
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin: 0px;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 </style>

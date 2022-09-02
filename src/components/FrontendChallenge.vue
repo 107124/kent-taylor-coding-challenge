@@ -19,14 +19,13 @@ Please use good design and user experience principles to make it look as profess
     </div>
     <div id="search-it">
       <div class="search-container">
-        <div class="panel-heading" style="font-weight: bold">
-          <div>Search Customers</div>
-        </div>
-        <div class="row">
-          <!-- search wrapper -->
-
-          <div class="search-wrapper">
+        <!-- search wrapper -->
+        <div class="search-wrapper">
+          <label for="form-control">Search Customer</label>
+          <div class="search-input">
+            <font-awesome-icon icon="fa-regular fa-magnifying-glass" />
             <input
+              id="form-control"
               class="form-control"
               type="text"
               v-model="searchQuery"
@@ -34,11 +33,10 @@ Please use good design and user experience principles to make it look as profess
             />
           </div>
         </div>
-
         <!-- tables set by category and using nth child for legibility -->
 
         <div class="panel-body" style="max-height: 400px; overflow-y: scroll">
-          <table v-if="people.length" class="table-container">
+          <table v-if="people.length" class="hidden-container">
             <tbody>
               <!-- for each person in the people array, display each of their info -->
 
@@ -48,11 +46,9 @@ Please use good design and user experience principles to make it look as profess
                 <td>{{ item.lastName }}</td>
                 <td>{{ item.phone }}</td>
                 <td>{{ item.email }}</td>
-                <td>
+                <td v-on:click="deleteEvent(item)">
                   <!-- sending each customers item info through the delete button to delete it's index -->
-                  <button v-on:click="deleteEvent(item)">
-                    <i class="fas fa-trash-alt"></i>
-                  </button>
+                  <i class="fas fa-trash-alt"></i>
                 </td>
               </tr>
             </tbody>
@@ -62,7 +58,7 @@ Please use good design and user experience principles to make it look as profess
     </div>
     <div class="dropdownList" style="margin: 50px auto 0; width: 250px"></div>
     <div class="table-container">
-      <table id="table_id" class="display" v-show="first">
+      <table class="display" v-show="first">
         <thead>
           <tr>
             <th
@@ -105,10 +101,9 @@ Please use good design and user experience principles to make it look as profess
             <td>{{ person.phone }}</td>
             <td>{{ person.email }}</td>
 
-            <td>
-              <button v-on:click="deleteEvent(person)">
-                <i class="fas fa-trash-alt"></i>
-              </button>
+            <td v-on:click="deleteEvent(person)">
+              <!-- sending each customers item info through the delete button to delete it's index -->
+              <i class="fas fa-trash-alt"></i>
             </td>
           </tr>
         </tbody>
@@ -157,10 +152,9 @@ Please use good design and user experience principles to make it look as profess
             <td>{{ person.firstName }}</td>
             <td>{{ person.phone }}</td>
             <td>{{ person.email }}</td>
-            <td>
-              <button v-on:click="deleteEvent(person)">
-                <i class="fas fa-trash-alt"></i>
-              </button>
+            <td v-on:click="deleteEvent(person)">
+              <!-- sending each customers item info through the delete button to delete it's index -->
+              <i class="fas fa-trash-alt"></i>
             </td>
           </tr>
         </tbody>
@@ -208,10 +202,9 @@ Please use good design and user experience principles to make it look as profess
             <td>{{ person.firstName }}</td>
             <td>{{ person.lastName }}</td>
             <td>{{ person.email }}</td>
-            <td>
-              <button v-on:click="deleteEvent(person)">
-                <i class="fas fa-trash-alt"></i>
-              </button>
+            <td v-on:click="deleteEvent(person)">
+              <!-- sending each customers item info through the delete button to delete it's index -->
+              <i class="fas fa-trash-alt"></i>
             </td>
           </tr>
         </tbody>
@@ -260,11 +253,10 @@ Please use good design and user experience principles to make it look as profess
             <td>{{ person.firstName }}</td>
             <td>{{ person.phone }}</td>
             <td>{{ person.lastName }}</td>
-            <td>
-              <!-- delete button -->
-              <button v-on:click="deleteEvent(person)">
-                <i class="fas fa-trash-alt"></i>
-              </button>
+            <!-- delete button -->
+            <td v-on:click="deleteEvent(person)">
+              <!-- sending each customers item info through the delete button to delete it's index -->
+              <i class="fas fa-trash-alt"></i>
             </td>
           </tr>
         </tbody>
@@ -289,70 +281,136 @@ export default {
       categories: ["First", "Last", "Phone", "Email"],
       people: [
         {
-          firstName: "jason",
+          firstName: "jayda",
           phone: "555-234-6532",
-          lastName: "anderson",
-          email: "Jason@gmail.com",
+          lastName: "kayson",
+          email: "jayda@gmail.com",
         },
         {
-          firstName: "sam",
+          firstName: "lavern",
           phone: "555-345-2059",
-          lastName: "johnston",
-          email: "sam@gmail.com",
+          lastName: "kason",
+          email: "lavern@gmail.com",
         },
         {
-          firstName: "andrew",
+          firstName: "alexandrea",
           phone: "555-492-0684",
-          lastName: "mugal",
-          email: "andrew@gmail.com",
+          lastName: "weston",
+          email: "alexandrea@gmail.com",
         },
         {
-          firstName: "zoe",
+          firstName: "hyacinth",
           phone: "555-495-6938",
-          lastName: "parker",
-          email: "zoe@gmail.com",
+          lastName: "poppy",
+          email: "hyacinth@gmail.com",
         },
         {
-          firstName: "gene",
+          firstName: "chelsey",
           phone: "555-392-2365",
-          lastName: "sparrow",
-          email: "gene@gmail.com",
+          lastName: "clifton",
+          email: "chelsey@gmail.com",
         },
         {
-          firstName: "clark",
+          firstName: "joshua",
           phone: "555-392-2265",
-          lastName: "kent",
-          email: "superman@gmail.com",
+          lastName: "bee",
+          email: "joshua@gmail.com",
         },
         {
-          firstName: "elizabeth",
+          firstName: "kaelyn",
           phone: "555-392-1048",
-          lastName: "nancy",
-          email: "elle@gmail.com",
+          lastName: "kalyn",
+          email: "kaelyn@gmail.com",
         },
         {
-          firstName: "james",
+          firstName: "rosalee",
           phone: "555-392-2365",
-          lastName: "taylor",
-          email: "jt@gmail.com",
+          lastName: "hyacinth",
+          email: "rosalee@gmail.com",
         },
         {
-          firstName: "carry",
+          firstName: "ace",
           phone: "555-392-2746",
-          lastName: "underwood",
-          email: "country@gmail.com",
+          lastName: "annabelle",
+          email: "ace@gmail.com",
         },
         {
-          firstName: "cinderella",
+          firstName: "zavanna",
           phone: "555-392-1847",
-          lastName: "charming",
-          email: "gene@gmail.com",
+          lastName: "ebenezer",
+          email: "zavanna@gmail.com",
         },
         {
-          firstName: "jaq",
+          firstName: "Katee",
           phone: "555-392-8911",
-          lastName: "cluso",
-          email: "clues-r-us@gmail.com",
+          lastName: "Vincent",
+          email: "katee@gmail.com",
+        },
+        {
+          firstName: "kehlani",
+          phone: "555-234-6532",
+          lastName: "mitch",
+          email: "kehlani@gmail.com",
+        },
+        {
+          firstName: "charisma",
+          phone: "555-345-2059",
+          lastName: "alysia",
+          email: "charisma@gmail.com",
+        },
+        {
+          firstName: "marnie",
+          phone: "555-492-0684",
+          lastName: "codie",
+          email: "marnie@gmail.com",
+        },
+        {
+          firstName: "craig",
+          phone: "555-495-6938",
+          lastName: "scotty",
+          email: "craig@gmail.com",
+        },
+        {
+          firstName: "jaxx",
+          phone: "555-392-2365",
+          lastName: "lyn",
+          email: "jaxx@gmail.com",
+        },
+        {
+          firstName: "dorean",
+          phone: "555-392-2265",
+          lastName: "randi",
+          email: "dorean@gmail.com",
+        },
+        {
+          firstName: "noelle",
+          phone: "555-392-1048",
+          lastName: "ally",
+          email: "noelle@gmail.com",
+        },
+        {
+          firstName: "shelia",
+          phone: "555-392-2365",
+          lastName: "rosannah",
+          email: "shelia@gmail.com",
+        },
+        {
+          firstName: "stephani",
+          phone: "555-392-2746",
+          lastName: "macaulay",
+          email: "stephani@gmail.com",
+        },
+        {
+          firstName: "keane",
+          phone: "555-392-1847",
+          lastName: "edytha",
+          email: "keane@gmail.com",
+        },
+        {
+          firstName: "loreen",
+          phone: "555-392-8911",
+          lastName: "carlene",
+          email: "loreen@gmail.com",
         },
       ],
     };
@@ -362,7 +420,15 @@ export default {
     filterCustomer() {
       if (this.searchQuery) {
         return this.people.filter((item) => {
-          return item.firstName.startsWith(this.searchQuery);
+          if (item.firstName.startsWith(this.searchQuery)) {
+            return item.firstName.startsWith(this.searchQuery);
+          } else if (item.lastName.startsWith(this.searchQuery)) {
+            return item.lastName.startsWith(this.searchQuery);
+          } else if (item.phone.startsWith(this.searchQuery)) {
+            return item.phone.startsWith(this.searchQuery);
+          } else if (item.email.startsWith(this.searchQuery)) {
+            return item.email.startsWith(this.searchQuery);
+          }
         });
       } else {
         return null;
@@ -413,22 +479,27 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  margin: 42px;
 }
-input {
+
+.form-control {
   width: 100%;
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  border-radius: 30px;
   outline: none;
   margin-top: 15px;
-  border: 1px solid white;
+  border: none;
+  background-color: rgba(255, 166, 0, 0.198);
+  border-bottom: 2px solid orange;
   text-align: center;
   text-decoration: none;
 }
-/*
-#talbe_id {
-  background-color: blue;
-  color: orange;
-} */
+
+.display {
+  overflow-x: scroll;
+  overflow-y: scroll;
+  height: 50%;
+}
 
 tr {
   order: 2;
@@ -439,9 +510,7 @@ th {
   transition: ease-in-out 0.25s;
   color: #545454;
 }
-th:hover {
-  color: white;
-}
+
 td {
   /* border: 1px solid black; */
   padding: 15px;
@@ -454,17 +523,18 @@ td:nth-child(odd) {
   overflow-x: scroll;
   transition: ease-in-out 0.25s;
 }
-td:hover {
-  background-color: var(--orange);
-}
+
 .table-container {
-  margin: 42px;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 90%;
+  overflow-y: scroll;
+  overflow-x: scroll;
 }
 .table {
   width: 70%;
+  height: 600px;
 }
 .action {
   color: white;
@@ -495,10 +565,10 @@ h3 {
 }
 
 .panel-body {
-  background-color: blue;
   padding: 0px;
   overflow-x: hidden;
   overflow-y: hidden;
+  height: 100%;
 }
 
 .customer-row {
@@ -510,7 +580,6 @@ button {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   border-radius: 30px;
   padding: 5px;
-  margin-right: 15px;
   outline: none;
   border: none;
   background-color: transparent;

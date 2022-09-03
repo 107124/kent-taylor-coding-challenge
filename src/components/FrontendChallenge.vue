@@ -285,6 +285,10 @@ Please use good design and user experience principles to make it look as profess
 </template>
 
 <script>
+// import Vue from "vue";
+import VueSweetalert2 from "vue-sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
+import Swal from "sweetalert2";
 export default {
   el: "#search-it",
   data() {
@@ -299,6 +303,10 @@ export default {
       inStorage: true,
       deleteName: "",
       categories: ["First", "Last", "Phone", "Email"],
+      options: {
+        confirmButtonColor: "#41b882",
+        cancelButtonColor: "#ff7674",
+      },
       people: [
         {
           firstName: "jayda",
@@ -473,14 +481,27 @@ export default {
   methods: {
     // delete each item that is sent by the delete button
     deleteEvent(item) {
-      var result = confirm(
-        `Are you sure you want to delete ${item.firstName}'s account?\n`
-      );
-      if (result) {
-        console.log(item);
-        alert(`The account: ${item.email} has been deleted`);
-        this.people.splice(this.people.indexOf(item), 1);
-      }
+      // var result = confirm(
+      // `Are you sure you want to delete ${item.firstName}'s account?\n`
+      // Vue.swal('Hello Vue world!!!')
+      // this.$swal('Hello Vue world!!!')
+      Swal.fire({
+        title: `Do you really want to delete ${item.firstName}'s record?`,
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "DELETE",
+        denyButtonText: `Don't delete`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          this.people.splice(this.people.indexOf(item), 1);
+          Swal.fire(`${item.firstName.toUpperCase()}`, "Deleted!");
+          return true;
+        } else if (result.isDenied) {
+          Swal.fire(`${item.firstName.toUpperCase()}`, "NOT deleted");
+          return false;
+        }
+      });
     },
   },
 };

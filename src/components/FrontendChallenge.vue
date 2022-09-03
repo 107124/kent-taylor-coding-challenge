@@ -39,12 +39,11 @@ Please use good design and user experience principles to make it look as profess
 
         <div class="panel-body">
           <table v-if="people.length" class="hidden-container">
-              <p v-show="!searchQuery">Search something</p>
-            <tbody>
+            <p v-if="!searchQuery && !showIt">Search results</p>
+            <tbody v-else-if="searchQuery && !showIt">
               <!-- for each person in the people array, display each of their info -->
 
               <tr v-for="item in filterCustomer" :key="item">
-                <h1 v-if="showIt">hey</h1>
                 <td>{{ item.firstName.toUpperCase() }}</td>
                 <td>{{ item.lastName.toUpperCase() }}</td>
                 <td>{{ item.phone }}</td>
@@ -55,6 +54,7 @@ Please use good design and user experience principles to make it look as profess
                 </td>
               </tr>
             </tbody>
+            <p v-else>No Results</p>
           </table>
         </div>
       </div>
@@ -118,7 +118,7 @@ Please use good design and user experience principles to make it look as profess
 
       <!-- each table represents the category selected -->
 
-      <table v-show="last">
+      <table class="display" v-show="last">
         <thead>
           <tr>
             <th
@@ -171,7 +171,7 @@ Please use good design and user experience principles to make it look as profess
         </tbody>
       </table>
 
-      <table v-show="phone">
+      <table class="display" v-show="phone">
         <thead>
           <tr>
             <th
@@ -225,7 +225,7 @@ Please use good design and user experience principles to make it look as profess
         </tbody>
       </table>
 
-      <table v-show="email">
+      <table class="display" v-show="email">
         <thead>
           <tr>
             <th
@@ -579,13 +579,18 @@ img {
   max-height: 350px;
   overflow-y: auto;
   width: 60vw;
-  border: 3px solid #535353;
-  border-radius: 5px;
+  border-bottom: 3px solid #535353;
 }
 
 .hidden-container p {
   padding: 8px 15px;
   margin: 5px;
+}
+
+.hidden-container tr:nth-child(odd),
+.display tr:nth-child(odd) {
+  background-color: rgb(245, 245, 245);
+  border-left: none;
 }
 
 .table-label {
@@ -640,8 +645,8 @@ td:nth-child(odd) {
   justify-content: center;
   align-items: center;
   height: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 .table {
   width: 70%;

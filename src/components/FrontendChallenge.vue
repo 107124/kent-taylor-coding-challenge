@@ -285,6 +285,7 @@ Please use good design and user experience principles to make it look as profess
 </template>
 
 <script>
+
 import "sweetalert2/dist/sweetalert2.min.css";
 import Swal from "sweetalert2";
 

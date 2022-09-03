@@ -285,10 +285,9 @@ Please use good design and user experience principles to make it look as profess
 </template>
 
 <script>
-// import Vue from "vue";
-import VueSweetalert2 from "vue-sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import Swal from "sweetalert2";
+
 export default {
   el: "#search-it",
   data() {

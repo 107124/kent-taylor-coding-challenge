@@ -15,3 +15,5 @@ export default defineConfig({
     }
   }
 })
+
+// https://help.heroku.com/sharing/fabfd162-0461-41ea-ab67-616075ae66a5

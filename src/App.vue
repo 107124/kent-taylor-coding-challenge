@@ -17,6 +17,8 @@ export default {
 
 <style>
 @import url(https://cdn.syncfusion.com/ej2/material.css);
+@import url("../node_modules/font-awesome/css/font-awesome.min.css");
+@import url("https://kit.fontawesome.com/14ae188149.js");
 html {
   background-color: #1ec5c3;
 }

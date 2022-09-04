@@ -50,7 +50,7 @@ Please use good design and user experience principles to make it look as profess
                 <td>{{ item.email }}</td>
                 <td class="delete-square" v-on:click="deleteEvent(item)">
                   <!-- sending each customers item info through the delete button to delete it's index -->
-                  <i class="fas fa-trash-alt"></i>
+                  <i class="fa trash">&#xf1f8;</i>
                 </td>
               </tr>
             </tbody>
@@ -110,7 +110,7 @@ Please use good design and user experience principles to make it look as profess
 
             <td class="delete-square" v-on:click="deleteEvent(person)">
               <!-- sending each customers item info through the delete button to delete it's index -->
-              <i class="fas fa-trash-alt"></i>
+              <i class="fa trash">&#xf1f8;</i>
             </td>
           </tr>
         </tbody>
@@ -165,7 +165,7 @@ Please use good design and user experience principles to make it look as profess
             <td>{{ person.email }}</td>
             <td class="delete-square" v-on:click="deleteEvent(person)">
               <!-- sending each customers item info through the delete button to delete it's index -->
-              <i class="fas fa-trash-alt"></i>
+              <i class="fa trash">&#xf1f8;</i>
             </td>
           </tr>
         </tbody>
@@ -219,7 +219,7 @@ Please use good design and user experience principles to make it look as profess
             <td>{{ person.email }}</td>
             <td class="delete-square" v-on:click="deleteEvent(person)">
               <!-- sending each customers item info through the delete button to delete it's index -->
-              <i class="fas fa-trash-alt"></i>
+              <i class="fa trash">&#xf1f8;</i>
             </td>
           </tr>
         </tbody>
@@ -275,7 +275,8 @@ Please use good design and user experience principles to make it look as profess
             <!-- delete button -->
             <td class="delete-square" v-on:click="deleteEvent(person)">
               <!-- sending each customers item info through the delete button to delete it's index -->
-              <i class="fas fa-trash-alt"></i>
+            <i class="fa trash">&#xf1f8;</i>
+
             </td>
           </tr>
         </tbody>
@@ -285,7 +286,6 @@ Please use good design and user experience principles to make it look as profess
 </template>
 
 <script>
-
 import "sweetalert2/dist/sweetalert2.min.css";
 import Swal from "sweetalert2";
 
@@ -510,6 +510,8 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500&display=swap");
+@import url("https://kit.fontawesome.com/14ae188149.js");
+
 :root {
   --blue: #4fc5c4;
   --orange: #f48d46;
@@ -573,6 +575,10 @@ img {
   /* this is the search button */
   color: orange;
   font-size: 1.2em;
+}
+
+.trash {
+  color: #9f9f9f;
 }
 
 .search-input {

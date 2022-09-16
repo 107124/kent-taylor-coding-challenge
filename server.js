@@ -1,17 +1,26 @@
-const express = require('express')
-const serveStatic = require('serve-static')
-const path = require('path')
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
-const app = express()
+const app = express();
 
-//here we are configuring dist to serve app files
-app.use('/', serveStatic(path.join(__dirname, '/dist')))
+// Middleware
+app.use(bodyParser.json());
+app.use(cors());
 
-// this * route is to serve project on different page routes except root `/`
-app.get(/.*/, function (req, res) {
-    res.sendFile(path.join(__dirname, '/dist/index.html'))
-})
+const customers = require('./src/components/customers');
 
-const port = process.env.PORT || 8080
-app.listen(port)
-console.log(`app is listening on port: ${port}`)
+app.use('/components/customers', customers);
+
+// // Handle production
+// if (process.env.NODE_ENV === 'production') {
+//   // Static folder
+//   app.use(express.static(__dirname + '/public/'));
+
+//   // Handle SPA
+//   app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
+// }
+
+const port = process.env.PORT || 5050;
+
+app.listen(port, () => console.log(`Server started on port ${port}`));
